@@ -1,0 +1,30 @@
+---
+---
+<div id="map"></div>
+
+<style>
+    #map {
+        width: 400px;
+        height: 400px;
+    }
+</style>
+
+<script>
+    import {fetchStops} from '../utils/fetchStops';
+    const data = await fetchStops();
+    console.log(data);
+</script>
+
+<script>
+    import L from 'leaflet';
+    import 'leaflet/dist/leaflet.css';
+    var map = L.map('map').setView([47.445072, -0.562326], 13);
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([47.445072, -0.562326]).addTo(map)
+    .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+    .openPopup();
+</script>
